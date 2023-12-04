@@ -117,7 +117,7 @@ public class Matrix implements IMatrix {
     @Override
     public IMatrix mul(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
         if(this.getRows() != otherMatrix.getColumns() || otherMatrix == null){
-            System.out.println("Количество строк не совпарадает с количеством колонок!!!");
+            System.out.println("Количество строк не совпадает с количеством колонок!!!");
             return null;
             }
 
@@ -169,7 +169,7 @@ public class Matrix implements IMatrix {
             }
 
         }
-        return this;
+        return this; // он ведь должен вернуть текущую матрицу, почему ругается?
     }
 
      */
@@ -181,7 +181,7 @@ public class Matrix implements IMatrix {
                 this.setValueAt(i, j, value);
             }
         }
-        return this;  // он ведь должен вернуть текущую матрицу, почему ругается
+        return this;  // он ведь должен вернуть текущую матрицу, почему ругается?
     }
 
    */
@@ -226,20 +226,45 @@ public class Matrix implements IMatrix {
         }
         return cofactorMatrix;
     }
-
+   // Проверяет является ли текущая матрица нулевой
     @Override
     public boolean isNullMatrix() {
+        for(int i = 0; i < getRows(); i++){
+            for (int j = 0; j < getColumns(); j++){
+                if(this.getValueAt(i, j) == 0){
+                    return true;
+                }
+            }
+
+        }
 
         return false;
     }
-
+    // Проверяет является ли текущая матрица единичной
     @Override
     public boolean isIdentityMatrix() {
+        for(int i = 0; i < getRows(); i++){
+            for (int j = 0; j < getColumns(); j++){
+                if(this.getValueAt(i, j) == 1){
+                    return true;
+                }
+            }
+
+        }
         return false;
     }
 
+  //  Проверяет является ли текущая матрица квадратной
     @Override
     public boolean isSquareMatrix() {
+        for(int i = 0; i < getRows(); i++){
+            for (int j = 0; j < getColumns(); j++){
+                if(this.getRows() == this.getColumns()){
+                    return true;
+                }
+            }
+
+        }
         return false;
     }
 
