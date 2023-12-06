@@ -8,7 +8,7 @@ public class Main {
         hen.getCountOfEggsPerMonth();
 
         System.out.print(hen.getDescription());
-        System.out.println();
+        System.out.println("@@  ");
 
 
     }

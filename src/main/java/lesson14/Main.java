@@ -3,9 +3,9 @@ package lesson14;
 public class Main {
     public static void main(String[] args) {
         double[][] numsForA = {{1, 1, 1, 1},
-                {1, 1, 1, 1},
-                {1, 1, 1, 1},
-                {1, 1, 1, 1}};
+                               {1, 3, 1, 1},
+                               {1, 1, 8, 1},
+                               {1, 1, 1, 6}};
         Matrix a = new Matrix(numsForA);
         System.out.println(a.getRows());
         System.out.println(a.getColumns());
@@ -14,54 +14,43 @@ public class Main {
         System.out.println(a.getValueAt(0, 0));
 
         double[][] numsForB = {{6, 6, 6, 7},
-                {5, 5, 5, 6},
-                {1, 1, 1, 1},
-                {4, 4, 4, 5}};
+                               {5, 5, 5, 6},
+                               {1, 1, 1, 1},
+                               {4, 4, 4, 5}};
         Matrix b = new Matrix(numsForB);
 
         // неявный параметр - а (внутри метода доступно по this)
         // явный параметр - b (внутри метода доступен otherMatrix)
+        System.out.println("суммa текущей матрицы и второго аргумента");
         IMatrix resultAdd = a.add(b);
-
         resultAdd.printToConsole();
-        System.out.println("---------------");
+
+        System.out.println("------------");
         a.printToConsole();
 
-      /*
         System.out.println("Детерминируем матрицу");
-        IMatrix det = a.determinant();
-        det.printToConsole();
-
-       */
-
+        a.determinant();
+        a.printToConsole();
 
         System.out.println("разность матриц");
         IMatrix resultSub = a.sub(b);
         resultSub.printToConsole();
 
-        System.out.println("---------------");
-
-        /*
+        System.out.println("произведение");
         IMatrix resultMul = a.mul(b);
         resultMul.printToConsole();
 
-         */
         System.out.println("умножаем матрицу на число");
         IMatrix resultMulValue = a.mul(5.0);
         resultMulValue.printToConsole();
 
-       /*
         System.out.println("транспонируем");
         IMatrix resultTranspose = a.transpose();
         resultTranspose.printToConsole();
 
-
-
         System.out.println("заполняем матрицу числом");
-        IMatrix resultToFill = a.fillMatrix(8.0);
-         resultToFill.printToConsole();
-
-        */
+        a.fillMatrix(8.0);
+        a.printToConsole();
 
         System.out.println("матрица нулевая?");
         Boolean resultIsNul = a.isNullMatrix();
