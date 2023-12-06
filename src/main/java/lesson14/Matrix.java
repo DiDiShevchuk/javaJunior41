@@ -18,12 +18,12 @@ public class Matrix implements IMatrix {
     }
 
     @Override
-    public int getRows() {
+    public int getRows() {  // ряд
         return nums.length;
     }
 
     @Override
-    public int getColumns() {
+    public int getColumns() { // столбцы
         return nums[0].length;
     }
 
@@ -108,31 +108,27 @@ public class Matrix implements IMatrix {
         return result;
     }
 
-    @Override
-    public IMatrix mul(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-        return null;
-    }
     // Возвращает произведение текущей матрицы и второго аргумента
-    /*
+
     @Override
     public IMatrix mul(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-        if(this.getRows() != otherMatrix.getColumns() || otherMatrix == null){
+        if (this.getRows() != otherMatrix.getColumns() || otherMatrix == null) {
             System.out.println("Количество строк не совпадает с количеством колонок!!!");
             return null;
-            }
+        }
 
-        Matrix result = new Matrix(getRows(), getColumns());
-        for(int i = 0; i < getRows(); i++){
-            for(int j = 0; j < getColumns(); j++ ){
-                for(int k = 0; k < this.getColumns(); k++) {
-                    result[i][j] += this.getValueAt(i, k) * otherMatrix.getValueAt(k, j);  // < --- тут не видит массив
+        Matrix result = new Matrix(this.getRows(), otherMatrix.getColumns());
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                double sum = 0.0;
+                for (int k = 0; k < this.getColumns(); k++) {
+                    sum += this.getValueAt(i, k) * otherMatrix.getValueAt(k, j);
+                    result.setValueAt(i, j, sum);
                 }
             }
         }
         return result;
-        }
-
-  */
+    }
 
 
     // Возвращает произведение текущей матрицы на число.<br/>
@@ -147,33 +143,22 @@ public class Matrix implements IMatrix {
         return result;
     }
 
-    @Override
-    public IMatrix transpose() {
-        return null;
-    }
-
-    @Override
-    public void fillMatrix(double value) {
-
-    }
 
     //  Возвращает транспонированную матрицу по отношению к текущей
-    /*
+
     @Override
     public IMatrix transpose() {
-        Matrix result = new Matrix(this.getRows(), this.getColumns());
+        Matrix result = new Matrix(this.getColumns(), this.getRows());
         for (int i = 0; i < getRows(); i++) {
             for (int j = 0; j < getColumns(); j++) {
-                this[i][j] = this[j][i];
-                result[j][i] = result;
+                result.setValueAt(j, i, this.getValueAt(i, j));
             }
 
         }
-        return this; // он ведь должен вернуть текущую матрицу, почему ругается?
+        return result;
     }
 
-     */
-  /*  // Заполняет текущю матрицу заданным значением
+
     @Override
     public void fillMatrix(double value) {
         for (int i = 0; i < getRows(); i++) {
@@ -181,10 +166,9 @@ public class Matrix implements IMatrix {
                 this.setValueAt(i, j, value);
             }
         }
-        return this;  // он ведь должен вернуть текущую матрицу, почему ругается?
+
     }
 
-   */
 
     @Override
     public double determinant() {
@@ -226,12 +210,13 @@ public class Matrix implements IMatrix {
         }
         return cofactorMatrix;
     }
-   // Проверяет является ли текущая матрица нулевой
+
+    // Проверяет является ли текущая матрица нулевой
     @Override
     public boolean isNullMatrix() {
-        for(int i = 0; i < getRows(); i++){
-            for (int j = 0; j < getColumns(); j++){
-                if(this.getValueAt(i, j) == 0){
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                if (this.getValueAt(i, j) == 0) {
                     return true;
                 }
             }
@@ -240,12 +225,13 @@ public class Matrix implements IMatrix {
 
         return false;
     }
+
     // Проверяет является ли текущая матрица единичной
     @Override
     public boolean isIdentityMatrix() {
-        for(int i = 0; i < getRows(); i++){
-            for (int j = 0; j < getColumns(); j++){
-                if(this.getValueAt(i, j) == 1){
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                if (this.getValueAt(i, j) == 1) {
                     return true;
                 }
             }
@@ -254,12 +240,12 @@ public class Matrix implements IMatrix {
         return false;
     }
 
-  //  Проверяет является ли текущая матрица квадратной
+    //  Проверяет является ли текущая матрица квадратной
     @Override
     public boolean isSquareMatrix() {
-        for(int i = 0; i < getRows(); i++){
-            for (int j = 0; j < getColumns(); j++){
-                if(this.getRows() == this.getColumns()){
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                if (this.getRows() == this.getColumns()) {
                     return true;
                 }
             }
