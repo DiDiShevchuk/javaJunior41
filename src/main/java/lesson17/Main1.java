@@ -23,6 +23,7 @@ public class Main1 {
 
 
         xolodilnik.printAllProducts();
+
         System.out.println("столько сейчас продуктов");
         xolodilnik.getProduct("яблоко", 1000);
         System.out.println();
@@ -31,6 +32,10 @@ public class Main1 {
         xolodilnik.getProduct("слива", 20000);
         xolodilnik.printAllProducts();
 
+
         xolodilnik.valueForComparatorMethod();
+        System.out.println("*****************");
+        xolodilnik.printProductSortOfTheWeight();
+
     }
 }

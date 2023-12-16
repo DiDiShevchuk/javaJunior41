@@ -6,18 +6,19 @@ import java.util.*;
 public class Xolodilnik {
     private HashMap<String, Integer> products = new HashMap<>(); // наша коллекция, массив по ассоциациям
 
-Integer valueForComparator;
+    Integer valueForComparator;
 
     public Integer getValueForComparator() {
         return valueForComparator;
     }
 
-    public void valueForComparatorMethod(){
-    for(Integer val : products.values()){
-        valueForComparator = products.get(val);
+    public void valueForComparatorMethod() {
+        for (Integer val : products.values()) {
+            valueForComparator = products.get(val);
+        }
     }
-}
-        public void addProduct(String nameOfProduct, int value) {
+
+    public void addProduct(String nameOfProduct, int value) {
         nameOfProduct = nameOfProduct.toLowerCase(Locale.ROOT);
         if (products.containsKey(nameOfProduct)) { // если продукт в холодильнике
             int currentValue = products.get(nameOfProduct); // сохранился вес продукта
@@ -43,12 +44,12 @@ Integer valueForComparator;
     }
 
 
-
     public void getProduct(String nameOfProduct, int value) {
 
         if (products.containsKey(nameOfProduct)) {
             int current = products.get(nameOfProduct);
             if (current > value) {
+                System.out.println("Вы взяли продукт: " + nameOfProduct);
                 products.put(nameOfProduct, current - value);
             } else {
                 System.out.println(nameOfProduct + " в холодильнике не достаточно");
@@ -56,10 +57,9 @@ Integer valueForComparator;
             }
 
         } else {
-            System.out.println("данного продукта в холодильнике нет");
+            System.out.println("Данного продукта в холодильнике нет");
         }
     }
-
 
 
     public void printWeightProducts() {
@@ -73,9 +73,7 @@ Integer valueForComparator;
     public void printProductWillFirstEnd() {
         TreeMap<String, Integer> sortedMap = new TreeMap<>();
         sortedMap.putAll(products);
-        TreeMap<Xolodilnik,Xolodilnik> s = new TreeMap<>(new SortByValueComparator());
-
-
+        TreeMap<Xolodilnik, Xolodilnik> s = new TreeMap<>(new SortByValueComparator());
         System.out.println(s.lastEntry() + " -  закончится самым первым");
         System.out.println(s.values() + "  значение");
     }
@@ -86,14 +84,18 @@ Integer valueForComparator;
         sortedMap.putAll(products);
         System.out.println(sortedMap.entrySet() + " : отсортировано по названию");
     }
-/*
+
 
     public void printProductSortOfTheWeight() {
+        Map<String, Integer> sortedMap = new TreeMap<String, Integer>(
+                Comparator.comparing(products::get));
         sortedMap.putAll(products);
+
+
+        System.out.println(sortedMap + " продукты отсортированы по весу  ");
 
     }
 
- */
 }
 
 
@@ -103,6 +105,6 @@ Integer valueForComparator;
     // 2 - вывести на терминал какой продукт закончится самым первым
     // 3 - вывести вес всех продуктов в холодильнике
     // 4 - *** вывести продукты и вес в отсортированном формате по Названию
-    // 5 - *** вывести продукты и вес в отсортированном формате по Весу (от большего к меньшему)
+    // 5 - *** вывести продукты и вес в отсортированном формате по Весу
 
 
