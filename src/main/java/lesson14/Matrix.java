@@ -216,14 +216,14 @@ public class Matrix implements IMatrix {
     public boolean isNullMatrix() {
         for (int i = 0; i < getRows(); i++) {
             for (int j = 0; j < getColumns(); j++) {
-                if (this.getValueAt(i, j) == 0) {
-                    return true;
+                if (this.getValueAt(i, j) != 0) {
+                    return false;
                 }
             }
 
         }
 
-        return false;
+        return true;
     }
 
     // Проверяет является ли текущая матрица единичной
@@ -231,13 +231,13 @@ public class Matrix implements IMatrix {
     public boolean isIdentityMatrix() {
         for (int i = 0; i < getRows(); i++) {
             for (int j = 0; j < getColumns(); j++) {
-                if (this.getValueAt(i, j) == 1) {
-                    return true;
+                if (this.getValueAt(i, j) != 1) {
+                    return false;
                 }
             }
 
         }
-        return false;
+        return true;
     }
 
     //  Проверяет является ли текущая матрица квадратной
@@ -245,13 +245,13 @@ public class Matrix implements IMatrix {
     public boolean isSquareMatrix() {
         for (int i = 0; i < getRows(); i++) {
             for (int j = 0; j < getColumns(); j++) {
-                if (this.getRows() == this.getColumns()) {
-                    return true;
+                if (this.getRows() != this.getColumns()) {
+                    return false;
                 }
             }
 
         }
-        return false;
+        return true;
     }
 
     @Override

@@ -9,9 +9,22 @@ public class Main {
         Matrix a = new Matrix(numsForA);
         System.out.println(a.getRows());
         System.out.println(a.getColumns());
-        System.out.println(a.getValueAt(0, 0));
-        a.setValueAt(0, 0, 9);
-        System.out.println(a.getValueAt(0, 0));
+
+        try {
+            System.out.println(a.getValueAt(0, 0));
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("rowIndex не подходит!!! || colIndex не подходит!!!");
+        }
+        try {
+            a.setValueAt(0, 0, 9);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("rowIndex не подходит!!! || colIndex не подходит!!!");
+        }
+        try {
+            System.out.println(a.getValueAt(0, 0));
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("rowIndex не подходит!!! || colIndex не подходит!!!");
+        }
 
         double[][] numsForB = {{6, 6, 6, 7},
                                {5, 5, 5, 6},
@@ -22,8 +35,16 @@ public class Main {
         // неявный параметр - а (внутри метода доступно по this)
         // явный параметр - b (внутри метода доступен otherMatrix)
         System.out.println("суммa текущей матрицы и второго аргумента");
-        IMatrix resultAdd = a.add(b);
-        resultAdd.printToConsole();
+       try {
+           IMatrix resultAdd = a.add(b);
+           resultAdd.printToConsole();
+       }catch (IllegalArgumentException e){
+
+       }catch (NullPointerException e){
+
+       }
+
+
 
         System.out.println("------------");
         a.printToConsole();
