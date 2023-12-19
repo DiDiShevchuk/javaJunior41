@@ -26,13 +26,13 @@ public class Main1 {
         } catch (ArithmeticException e) {
             System.out.println("ArithmeticException");
         }
-
+        System.out.println("*********************************");
         try {
             System.out.println(stringUtil.findWord("привет мир небо мир", "мир"));
         } catch (NullPointerException e) {
-            System.out.println("NullPointerException");
+            System.out.println("ошибка");
         }
-
+        System.out.println("*********************************");
         try {
             System.out.println(stringUtil.findNumbers("исхwe3одный т-235екст"));
         } catch (CustomException e) {
